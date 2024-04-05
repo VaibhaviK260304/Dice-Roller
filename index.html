@@ -8,7 +8,7 @@
         body{
             background-color: #FA8BFF;
             background-image: linear-gradient(45deg, #FA8BFF 0%, #2BD2FF 52%, #2BFF88 90%);
-            height: 100vh;
+            min-height: 100vh;
         }
         .img-dice{
             height: 200px;
@@ -31,13 +31,19 @@
             margin: 20px auto;
             display: block;
         }
+        .animate{
+            animation: roll 1s infinite;
+        }
+        @keyframes roll {
+            0%   {transform: rotate(-360deg)}
+            100% {transform: rotate(360deg)}
+        }
     </style>
 </head>
 <body>
     <h1 class="title">DICE ROLLER</h1>
     <img src="random.png" alt="DICE" class="img-dice" id="img-dice"/>
     <button  onclick="roll()" class="btn-roll" ondblclick="roll()">ROLL THE DIE!</button><br/>
-
 
 
     <script>
@@ -68,11 +74,12 @@
             case 6:
                 img.src="six.png";
                 break;
-            default:
-                img.src="random.png";
         }
+        img.classList.add('animate');
+        setTimeout(() => {
+          img.classList.remove('animate')
+        }, 700)
     }
-
         
     </script>
 </body>
